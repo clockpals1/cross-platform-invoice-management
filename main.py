@@ -16,6 +16,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 from fpdf import FPDF
+from functools import partial
 
 DB_PATH = "database/invoices.db"
 OUTPUT_DIR = "output"
@@ -743,11 +744,11 @@ class DashboardWidget(QWidget):
                     action_widget = QWidget()
                     hbox = QHBoxLayout()
                     btn_view = QPushButton("View")
-                    btn_view.clicked.connect(lambda _, r=row: self.open_invoice_details(row_idx, 0, r[0]))
+                    btn_view.clicked.connect(partial(self.open_invoice_details, row_idx, 0, row[0]))
                     btn_edit = QPushButton("Edit")
-                    btn_edit.clicked.connect(lambda _, r=row: self.edit_invoice(r[0]))
+                    btn_edit.clicked.connect(partial(self.edit_invoice, row[0]))
                     btn_delete = QPushButton("Delete")
-                    btn_delete.clicked.connect(lambda _, r=row: self.delete_invoice(r[0]))
+                    btn_delete.clicked.connect(partial(self.delete_invoice, row[0]))
                     hbox.addWidget(btn_view)
                     hbox.addWidget(btn_edit)
                     hbox.addWidget(btn_delete)
@@ -781,15 +782,19 @@ class DashboardWidget(QWidget):
                 "id": data[0],
                 "invoice_number": data[1],
                 "client_name": data[2],
-                "description": data[3],
-                "items": data[4],
-                "subtotal": data[5],
-                "tax": data[6],
-                "total": data[7],
-                "email": data[8],
-                "company_name": data[9],
-                "company_address": data[10],
-                "company_contact": data[11]
+                "client_address": data[3],
+                "client_number": data[4],
+                "description": data[5],
+                "items": data[6],
+                "subtotal": data[7],
+                "tax": data[8],
+                "total": data[9],
+                "email": data[10],
+                "company_name": data[11],
+                "company_address": data[12],
+                "company_contact": data[13],
+                "date_added": data[14],
+                "date": data[15]
             }
         viewer = InvoiceViewer(invoice_data, self, dashboard_reload_callback=self.load_data)
         viewer.exec()
@@ -811,15 +816,19 @@ class DashboardWidget(QWidget):
                 "id": data[0],
                 "invoice_number": data[1],
                 "client_name": data[2],
-                "description": data[3],
-                "items": data[4],
-                "subtotal": data[5],
-                "tax": data[6],
-                "total": data[7],
-                "email": data[8],
-                "company_name": data[9],
-                "company_address": data[10],
-                "company_contact": data[11]
+                "client_address": data[3],
+                "client_number": data[4],
+                "description": data[5],
+                "items": data[6],
+                "subtotal": data[7],
+                "tax": data[8],
+                "total": data[9],
+                "email": data[10],
+                "company_name": data[11],
+                "company_address": data[12],
+                "company_contact": data[13],
+                "date_added": data[14],
+                "date": data[15]
             }
         form = InvoiceForm(self, prefill=invoice_data, edit_mode=True)
         if form.exec() == QDialog.Accepted:
