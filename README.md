@@ -1,6 +1,6 @@
 # BuildSmart Invoice System
 
-(c) 2025 Sunday AyoMI (Clockpals)
+(c) 2025 Sunday AyoMI (Clockpals1)
 
 ## About
 BuildSmart Invoice System is a professional, cross-platform desktop application for managing, generating, and exporting invoices. It is built with Python, PySide6 (Qt for Python), and FPDF for PDF generation. The app is suitable for small businesses and freelancers who need a simple, robust, and modern invoicing solution.
@@ -56,4 +56,4 @@ BuildSmart Invoice System is a professional, cross-platform desktop application 
 - The app will create required folders on first run.
 
 ---
-**Signature:** Sunday / Clockpals
+**Signature:** Sunday Oyediran/ Clockpals1
